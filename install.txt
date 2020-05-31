@@ -2,6 +2,6 @@ zsh
 zsh-autosuggestions
 zsh-completions
 zsh-history-substring-search
-zsh-tyntax-hightlighting
+zsh-syntax-highlighting
 gvim
 neofetch
