@@ -40,7 +40,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 Sau khi đã có vim-plug, một người chỉ cần chạy lệnh sau để cài đặt toàn bộ theme và plugin được khai báo trong `vimrc`:
 
 ```sh
-vim +plugintall +qall
+vim +PlugInstall +qall
 ```
 
 ## fontconfig
