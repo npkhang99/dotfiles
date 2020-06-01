@@ -17,6 +17,7 @@ set background=dark
 let g:edge_style='neon'
 " let g:edge_disable_italic_comment=1
 
+autocmd BufWritePre * %s/\s\+$//e
 colors synthwave84
 
 set nu
