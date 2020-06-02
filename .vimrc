@@ -27,6 +27,7 @@ set softtabstop=4
 set expandtab
 set autoindent
 set smarttab
+set breakindent
 
 set hlsearch
 
