@@ -222,6 +222,8 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
     ;;
 esac
 
+export QT_QPA_PLATFORM=xcb
+
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
@@ -229,4 +231,9 @@ ibus-daemon -drx
 
 export PATH="$HOME/.local/bin:$PATH"
 
-if [[ "$XDG_SESSION_TYPE" = "x11" ]]; then export MOZ_X11_EGL=1; else export MOZ_ENABLE_WAYLAND=1; fi;
+if [[ "$XDG_SESSION_TYPE" = "x11" ]];
+then
+    export MOZ_X11_EGL=1;
+else
+    export MOZ_ENABLE_WAYLAND=1;
+fi;

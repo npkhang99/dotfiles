@@ -26,6 +26,8 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set autoindent
+set smartindent
+set cindent
 set smarttab
 set breakindent
 
@@ -41,3 +43,9 @@ set autoread
 set incsearch
 set ignorecase
 set smartcase
+
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
