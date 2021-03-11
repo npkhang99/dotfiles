@@ -8,7 +8,7 @@ setopt numericglobsort                                          # Sort filenames
 setopt nobeep                                                   # No beep
 setopt appendhistory                                            # Immediately append history instead of overwriting
 setopt histignorealldups                                        # If a new command is a duplicate, remove the older one
-setopt autocd                                                   # if only directory path is entered, cd there.
+# setopt autocd                                                   # if only directory path is entered, cd there.
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
@@ -19,8 +19,8 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' menu select
 zstyle ':completion:*' cache-path ~/.zsh/cache
 HISTFILE=~/.zhistory
-HISTSIZE=1000
-SAVEHIST=500
+HISTSIZE=9001
+SAVEHIST=9001
 export EDITOR=/usr/bin/vim
 #export VISUAL=/usr/bin/nano
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
@@ -62,7 +62,7 @@ alias ls='ls --group-directories-first --color=auto'
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
-alias ll='ls -lh --group-directories-first'
+alias ll='ls -lhF --group-directories-first'
 # Theming section
 autoload -U compinit colors zcalc
 compinit -d
@@ -221,19 +221,3 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
         ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=246,underline
     ;;
 esac
-
-export QT_QPA_PLATFORM=xcb
-
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
-ibus-daemon -drx
-
-export PATH="$HOME/.local/bin:$PATH"
-
-if [[ "$XDG_SESSION_TYPE" = "x11" ]];
-then
-    export MOZ_X11_EGL=1;
-else
-    export MOZ_ENABLE_WAYLAND=1;
-fi;
