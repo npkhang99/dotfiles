@@ -54,9 +54,11 @@ font-feature = "-calt -liga -dlig"
 window-save-state = never
 resize-overlay = always
 window-padding-color = extend
-window-height = 50
+window-height = 54
 window-width = 148
 window-step-resize = true
 quit-after-last-window-closed=true
 keybind = shift+enter=text:\x1b\r
 window-step-resize = false
+background-opacity = 0.95
+background-blur = true
