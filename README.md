@@ -26,9 +26,8 @@ Ngoài ra, mình cũng tinh chỉnh lại zsh của mình cho giống với bash
 
 Các plugin / theme có sẵn trong `vimrc` bao gồm:
 
-1. [`edge` theme](https://github.com/sainnhe/edge)
-2. [`synthwave84` theme](https://github.com/artanikin/vim-synthwave84)
-3. [`vim-airline` plugin](https://github.com/vim-airline/vim-airline)
+1. [`OneDark` theme](https://github.com/joshdick/onedark.vim)
+2. [`vim-airline` plugin](https://github.com/vim-airline/vim-airline)
 
 Các plugin và theme trên được quản lý bởi [vim-plug](https://github.com/junegunn/vim-plug). Để cài đặt vim-plug, chúng ta cần phải chạy lệnh sau:
 
@@ -43,6 +42,44 @@ Sau khi đã có vim-plug, một người chỉ cần chạy lệnh sau để c�
 vim +PlugInstall +qall
 ```
 
+## Neovim
+
+The Neovim config keeps the same editor options and key mappings as Vim. It
+uses the OneDark theme and installs these language servers automatically:
+
+- Python: basedpyright and Ruff
+- TypeScript/JavaScript: ts_ls
+- Go: gopls
+- Rust: rust-analyzer
+
+Python projects made with `uv` are supported. The Python language server uses
+the active virtual environment, or the project's `.venv` folder. These commands
+are also available inside Neovim:
+
+- `:UvSync`
+- `:UvVenv`
+- `:UvRun <command>`
+
+Neovim 0.11 or newer is required. On Ubuntu, install a recent Neovim release.
+On macOS, use Homebrew:
+
+```sh
+brew install neovim
+```
+
+Also install `git`, `curl`, Node.js, and Go. Mason uses Node.js for the
+TypeScript server and Go for `gopls`. Install `uv` and Rust with their official
+installers if they are not already available.
+
+After cloning this repo, run:
+
+```sh
+./setup-editors.sh
+```
+
+The script backs up existing Vim or Neovim configs, creates links to this repo,
+installs the editor plugins, and installs the language servers with Mason.
+
 ## fontconfig
 
 Sau khi cài đặt thêm các font của Microsoft, fontconfig nhằm dùng để tinh chỉnh lại việc render font một tí cho phù hợp với sở thích của bản thân mình hơn. Đồng thời, nếu trên những Arch-based distribution thì có thể cài trực tiếp [freetype2-cleartype](https://aur.archlinux.org/packages/freetype2-cleartype/) từ AUR để có thể sử dụng Clear Type của Microsoft cho font rasterization (tùy sở thích mỗi người).
@@ -52,4 +89,3 @@ Ngoài ra, vì emoji trên Chrome của Linux mặc định sẽ không load đ�
 ## neofetch
 
 Vì mình dùng GNOME và dùng theme Yaru của Ubuntu (vì nó đẹp) nên mình chỉnh neofetch cho nó hiện ascii art thành Ubuntu cho vui :penguin:
-
