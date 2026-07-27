@@ -25,6 +25,33 @@ vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+vim.diagnostic.config({
+    virtual_text = {
+        severity = { min = vim.diagnostic.severity.WARN },
+        spacing = 2,
+        prefix = "●",
+    },
+    signs = true,
+    underline = true,
+})
+
+local function set_muted_diagnostic_text()
+    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", {
+        fg = "#96525b",
+        italic = true,
+    })
+    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", {
+        fg = "#9a835f",
+        italic = true,
+    })
+end
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+    callback = set_muted_diagnostic_text,
+    desc = "Use softer colors for inline diagnostics",
+})
+set_muted_diagnostic_text()
+
 vim.keymap.set("i", "<C-H>", "<C-W>", { desc = "Delete previous word" })
 vim.keymap.set("n", "<Tab>", ">>_")
 vim.keymap.set("n", "<S-Tab>", "<<_")
@@ -36,6 +63,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*",
     command = [[%s/\s\+$//e]],
     desc = "Remove trailing whitespace",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "markdown", "markdown.mdx" },
+    callback = function()
+        vim.treesitter.start()
+    end,
+    desc = "Enable Tree-sitter highlighting for Markdown",
 })
 
 -- Install lazy.nvim automatically on the first start.
@@ -57,21 +92,18 @@ vim.opt.rtp:prepend(lazy_path)
 
 require("lazy").setup({
     {
-        "navarasu/onedark.nvim",
+        "sonph/onehalf",
         priority = 1000,
-        config = function()
-            require("onedark").setup({
-                style = "dark",
-                term_colors = true,
-            })
-            require("onedark").load()
+        config = function(plugin)
+            vim.opt.runtimepath:prepend(plugin.dir .. "/vim")
+            vim.cmd.colorscheme("onehalfdark")
         end,
     },
     {
         "vim-airline/vim-airline",
         dependencies = { "vim-airline/vim-airline-themes" },
         init = function()
-            vim.g.airline_theme = "onedark"
+            vim.g.airline_theme = "onehalfdark"
         end,
     },
     {
@@ -160,6 +192,7 @@ require("lazy").setup({
                     "ts_ls",
                     "gopls",
                     "rust_analyzer",
+                    "marksman",
                 },
                 automatic_enable = true,
             })
