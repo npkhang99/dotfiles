@@ -3,8 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'sainnhe/edge'
-Plug 'artanikin/vim-synthwave84'
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
@@ -17,11 +16,12 @@ set path+=**
 syntax on
 set background=dark
 
-let g:edge_style='neon'
-" let g:edge_disable_italic_comment=1
+let g:onedark_terminal_italics=1
+let g:airline_theme='onedark'
 
 autocmd BufWritePre * %s/\s\+$//e
-colors synthwave84
+" Do not fail before vim-plug installs the theme on a new machine.
+silent! colorscheme onedark
 
 set nu
 set tabstop=4
@@ -38,6 +38,9 @@ set hlsearch
 
 set backspace=indent,eol,start
 set clipboard=unnamed,unnamedplus
+
+" Match the zsh Ctrl+Backspace behavior (the terminal sends Ctrl+H).
+inoremap <C-H> <C-W>
 
 set ruler
 set showcmd
