@@ -3,7 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'joshdick/onedark.vim'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 call plug#end()
 
@@ -16,12 +16,11 @@ set path+=**
 syntax on
 set background=dark
 
-let g:onedark_terminal_italics=1
-let g:airline_theme='onedark'
+let g:airline_theme='onehalfdark'
 
 autocmd BufWritePre * %s/\s\+$//e
 " Do not fail before vim-plug installs the theme on a new machine.
-silent! colorscheme onedark
+silent! colorscheme onehalfdark
 
 set nu
 set tabstop=4
